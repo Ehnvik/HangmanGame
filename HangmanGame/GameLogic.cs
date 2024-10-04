@@ -2,7 +2,8 @@
 
 internal class GameLogic
 {
-    private readonly string _word;
+    private string _word;
+    private readonly Words _words;
     private int _lives = 5;
     private char _guessedLetter;
     private List<char> _guessedLetters = [];
@@ -11,7 +12,7 @@ internal class GameLogic
 
     public GameLogic(Words words)
     {
-        _word = words.GetRandomWord();
+        _words = words;
     }
 
 
@@ -47,9 +48,12 @@ internal class GameLogic
 
             if (ValidateInput(inputValue))
             {
+                Console.WriteLine("");
                 CheckIfLetterExistsInWord();
 
             }
+
+            Console.WriteLine("");
 
             if (_lives == 0)
             {
@@ -89,7 +93,6 @@ internal class GameLogic
             if (_lives > 0)
             {
                 _lives--;
-                Console.WriteLine($"You have {_lives} left.");
             }
         }
     }
@@ -117,6 +120,9 @@ internal class GameLogic
 
     public void StartGame()
     {
+        _word = _words.GetRandomWord();
+        _lives = 5;
+        _guessedLetters.Clear();
         GameField();
     }
 

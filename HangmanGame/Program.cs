@@ -7,7 +7,6 @@ internal class HangmanGame
     {
         var game = new GameLogic(new Words());
         game.StartGame();
-
     }
 
 
